@@ -80,3 +80,95 @@
 #include <string>
 using namespace std;
 
+// prototypes
+void addTask(vector<string> &tasks);
+void viewTasks(vector<string> &tasks);
+void deleteTask(vector<string> &tasks);
+void showMenu();
+
+int main() {
+    vector<string> tasks;
+    int choice;
+
+    do {
+        showMenu();
+        cin >> choice;
+        cin.ignore();   // clear leftover newline
+
+        if (choice == 1) {
+            addTask(tasks);
+        } else if (choice == 2) {
+            viewTasks(tasks);
+        } else if (choice == 3) {
+            deleteTask(tasks);
+        } else if (choice == 4) {
+            cout << "Goodbye!\n";
+        } else {
+            // invalid choice
+            cout << "Invalid choice. Please try again.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
+
+// print menu
+void showMenu() {
+    cout << "     TASK MANAGER MENU\n";
+    cout << "1. Add task\n";
+    cout << "2. View your tasks\n";
+    cout << "3. Delete task\n";
+    cout << "4. Quit\n";
+    cout << "Enter your choice (1-4): ";
+}
+
+// add task
+void addTask(vector<string> &tasks) {
+    string task;
+    cout << "Enter task: ";
+    getline(cin, task);
+
+    tasks.push_back(task);
+    cout << "Task added: \"" << task << "\"\n";
+}
+
+// view tasks
+void viewTasks(vector<string> &tasks) {
+    if (tasks.empty()) {
+        // empty list
+        cout << "You have no current tasks.\n";
+        return;
+    }
+
+    cout << "Your Tasks:\n";
+    for (int i = 0; i < (int)tasks.size(); i++) {
+        cout << i + 1 << ". " << tasks[i] << endl;
+    }
+}
+
+// delete task
+void deleteTask(vector<string> &tasks) {
+    if (tasks.empty()) {
+        cout << "You have no current tasks.\n";
+        return;
+    }
+
+    viewTasks(tasks);
+
+    int num;
+    cout << "Enter task number to delete: ";
+    cin >> num;
+    cin.ignore();
+
+    if (num < 1 || num > (int)tasks.size()) {
+        // bad number
+        cout << "Error: invalid task number.\n";
+        return;
+    }
+
+    string removed = tasks[num - 1];
+    tasks.erase(tasks.begin() + (num - 1));
+    cout << "Task \"" << removed << "\" has been removed.\n";
+}
+
