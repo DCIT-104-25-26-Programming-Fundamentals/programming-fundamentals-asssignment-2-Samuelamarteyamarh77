@@ -73,3 +73,116 @@
 #include <cmath>
 using namespace std;
 
+// prototypes
+double add(double a, double b);
+double subtract(double a, double b);
+double multiply(double a, double b);
+bool divide(double a, double b, double &result);
+bool computeModulus(double a, double b, double &result);
+double power(double a, double b);
+void showMenu();
+
+int main() {
+    int choice;
+
+    do {
+        showMenu();
+        cin >> choice;
+
+        cout << fixed << setprecision(2);
+
+        if (choice >= 1 && choice <= 6) {
+            double a, b;
+            cout << "Enter first number : ";
+            cin >> a;
+            cout << "Enter second number: ";
+            cin >> b;
+
+            if (choice == 1) {
+                cout << "Result: " << a << " + " << b << " = " << add(a, b) << "\n";
+            } else if (choice == 2) {
+                cout << "Result: " << a << " - " << b << " = " << subtract(a, b) << "\n";
+            } else if (choice == 3) {
+                cout << "Result: " << a << " * " << b << " = " << multiply(a, b) << "\n";
+            } else if (choice == 4) {
+                double result;
+                if (divide(a, b, result)) {
+                    cout << "Result: " << a << " / " << b << " = " << result << "\n";
+                } else {
+                    // div by zero
+                    cout << "Error: Cannot divide by zero.\n";
+                }
+            } else if (choice == 5) {
+                double result;
+                if (computeModulus(a, b, result)) {
+                    cout << "Result: " << a << " % " << b << " = " << result << "\n";
+                } else {
+                    cout << "Error: Cannot divide by zero.\n";
+                }
+            } else if (choice == 6) {
+                cout << "Result: " << a << " ^ " << b << " = " << power(a, b) << "\n";
+            }
+        } else if (choice == 7) {
+            cout << "Goodbye!\n";
+        } else {
+            // invalid choice
+            cout << "Invalid choice. Please try again.\n";
+        }
+
+    } while (choice != 7);
+
+    return 0;
+}
+
+// print menu
+void showMenu() {
+    cout << "\n============================\n";
+    cout << "     SIMPLE CALCULATOR\n";
+    cout << "============================\n";
+    cout << "1. Addition\n";
+    cout << "2. Subtraction\n";
+    cout << "3. Multiplication\n";
+    cout << "4. Division\n";
+    cout << "5. Modulus\n";
+    cout << "6. Exponentiation\n";
+    cout << "7. Quit\n";
+    cout << "Select an operation (1-7): ";
+}
+
+// add
+double add(double a, double b) {
+    return a + b;
+}
+
+// subtract
+double subtract(double a, double b) {
+    return a - b;
+}
+
+// multiply
+double multiply(double a, double b) {
+    return a * b;
+}
+
+// divide
+bool divide(double a, double b, double &result) {
+    if (b == 0) {
+        return false;   // div by zero
+    }
+    result = a / b;
+    return true;
+}
+
+// modulus
+bool computeModulus(double a, double b, double &result) {
+    if (b == 0) {
+        return false;   // div by zero
+    }
+    result = fmod(a, b);
+    return true;
+}
+
+// exponent
+double power(double a, double b) {
+    return pow(a, b);
+}
