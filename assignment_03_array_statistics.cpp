@@ -41,8 +41,6 @@
 
 #include <iostream>
 using namespace std;
-
-// Function to read numbers into the array
 void readNumbers(int arr[], int n) {
     for (int i = 0; i < n; i++) {
         cout << "Enter number " << (i + 1) << ": ";
@@ -50,7 +48,7 @@ void readNumbers(int arr[], int n) {
     }
 }
 
-// Function to calculate the sum
+// sum
 int calculateSum(int arr[], int n) {
     int sum = 0;
     for (int i = 0; i < n; i++) {
@@ -59,13 +57,13 @@ int calculateSum(int arr[], int n) {
     return sum;
 }
 
-// Function to calculate the average
+//average
 double calculateAverage(int arr[], int n) {
     int sum = calculateSum(arr, n);
     return (double)sum / n;
 }
 
-// Function to find the maximum
+//maximum
 int findMax(int arr[], int n) {
     int max = arr[0];
     for (int i = 1; i < n; i++) {
@@ -76,7 +74,7 @@ int findMax(int arr[], int n) {
     return max;
 }
 
-// Function to find the minimum
+//minimum
 int findMin(int arr[], int n) {
     int min = arr[0];
     for (int i = 1; i < n; i++) {
